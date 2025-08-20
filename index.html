@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EdSmart - Free online learning platform with thousands of courses across various disciplines. Learn at your own pace, anytime, anywhere.">
+    <meta name="theme-color" content="#4361ee">
+    <meta property="og:title" content="EdSmart - Free Online Learning Platform">
+    <meta property="og:description" content="Access thousands of free courses across various disciplines and advance your skills at your own pace.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>EdSmart - Free Online Learning Platform</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    
+    <!-- Preload critical CSS -->
+    <style>
+        /* Critical CSS for above-the-fold content */
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --success: #06d6a0;
+            --warning: #ffd166;
+            --danger: #ef476f;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7fb;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        /* Hide all sections by default; router will show the active one */
+        .page-section { display: none; }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo" aria-label="EdSmart Home">
+                <div class="logo-icon" aria-hidden="true">E</div>
+                <span>EdSmart</span>
+            </a>
+            
+            <button class="mobile-menu-btn" aria-label="Toggle navigation menu">
+                ☰
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#courses" class="nav-link">Courses</a></li>
+                    <li><a href="#categories" class="nav-link">Categories</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Sign In</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Home Section -->
+        <section id="home" class="page-section hero">
+            <div class="container">
+                <h1 class="animate-fade-in">Learn Anything, Anytime, Anywhere</h1>
+                <p class="animate-fade-in">Access thousands of free courses across various disciplines and advance your skills at your own pace.</p>
+                
+                <div class="search-bar animate-fade-in">
+                    <form role="search" class="search-form">
+                        <label for="search-input" class="sr-only">Search courses</label>
+                        <input 
+                            type="search" 
+                            id="search-input" 
+                            placeholder="What do you want to learn today?" 
+                            aria-label="Search courses"
+                            required
+                        >
+                        <button type="submit" aria-label="Search">
+                            <span class="search-icon" aria-hidden="true">🔍</span>
+                            <span class="search-text">Search</span>
+                        </button>
+                        <div class="search-loading" aria-hidden="true" hidden>
+                            <span class="sr-only">Searching...</span>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="hero-stats animate-fade-in" style="animation-delay: 0.3s">
+                    <div class="stat-item">
+                        <span class="stat-number">10,000+</span>
+                        <span class="stat-label">Courses</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1M+</span>
+                        <span class="stat-label">Students</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="categories" class="page-section categories">
+            <div class="container">
+                <h2 class="section-title">Explore <span>Categories</span></h2>
+                
+                <div class="categories-grid">
+                    <div class="category-card animate-fade-in">
+                        <div class="category-icon">💻</div>
+                        <h3>Programming</h3>
+                        <p>Learn to code with comprehensive courses in web development, data science, and software engineering.</p>
+                    </div>
+                    
+                    <div class="category-card animate-fade-in" style="animation-delay: 0.1s">
+                        <div class="category-icon">📊</div>
+                        <h3>Data Science</h3>
+                        <p>Master data analysis, machine learning, and statistical methods with hands-on projects.</p>
+                    </div>
+                    
+                    <div class="category-card animate-fade-in" style="animation-delay: 0.2s">
+                        <div class="category-icon">🎨</div>
+                        <h3>Design</h3>
+                        <p>Develop your creative skills in UI/UX design, graphic design, and digital illustration.</p>
+                    </div>
+                    
+                    <div class="category-card animate-fade-in" style="animation-delay: 0.3s">
+                        <div class="category-icon">💼</div>
+                        <h3>Business</h3>
+                        <p>Gain essential business knowledge in marketing, finance, entrepreneurship, and management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses" class="page-section featured-courses">
+            <div class="container">
+                <h2 class="section-title">Featured <span>Courses</span></h2>
+                
+                <div class="courses-carousel-container">
+                    <button class="carousel-nav carousel-prev" aria-label="Previous courses">
+                        <span class="carousel-arrow">‹</span>
+                    </button>
+                    
+                    <div class="courses-carousel">
+                        <div class="course-card featured" data-course-id="web-dev-bootcamp">
+                            <div class="course-image">Web Development Fundamentals</div>
+                            <div class="course-content">
+                                <span class="course-tag">Beginner</span>
+                                <h3 class="course-title">Complete Web Development Bootcamp</h3>
+                                <p class="course-description">Learn HTML, CSS, JavaScript, and modern frameworks to build professional websites.</p>
+                                <div class="course-meta">
+                                    <span class="duration">⏱️ 12 hours</span>
+                                    <span class="rating">⭐ 4.9 (2.3k)</span>
+                                </div>
+                                <div class="course-progress">
+                                    <div class="progress-bar" style="width: 30%"></div>
+                                </div>
+                                <button class="btn btn-outline course-enroll-btn">Enroll Now</button>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card popular" data-course-id="python-data-science">
+                            <div class="course-image">Python Programming</div>
+                            <div class="course-content">
+                                <span class="course-tag">Intermediate</span>
+                                <h3 class="course-title">Python for Data Science</h3>
+                                <p class="course-description">Master Python libraries like Pandas, NumPy, and Matplotlib for data analysis.</p>
+                                <div class="course-meta">
+                                    <span class="duration">⏱️ 15 hours</span>
+                                    <span class="rating">⭐ 4.8 (1.8k)</span>
+                                </div>
+                                <div class="course-progress">
+                                    <div class="progress-bar" style="width: 0%"></div>
+                                </div>
+                                <button class="btn btn-outline course-enroll-btn">Enroll Now</button>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card new" data-course-id="ui-ux-design">
+                            <div class="course-image">UI/UX Design</div>
+                            <div class="course-content">
+                                <span class="course-tag">Beginner</span>
+                                <h3 class="course-title">UI/UX Design Principles</h3>
+                                <p class="course-description">Learn user-centered design, wireframing, and prototyping with industry tools.</p>
+                                <div class="course-meta">
+                                    <span class="duration">⏱️ 8 hours</span>
+                                    <span class="rating">⭐ 4.7 (1.2k)</span>
+                                </div>
+                                <div class="course-progress">
+                                    <div class="progress-bar" style="width: 75%"></div>
+                                </div>
+                                <button class="btn btn-outline course-enroll-btn">Enroll Now</button>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card featured" data-course-id="machine-learning">
+                            <div class="course-image">Machine Learning</div>
+                            <div class="course-content">
+                                <span class="course-tag">Advanced</span>
+                                <h3 class="course-title">Machine Learning Fundamentals</h3>
+                                <p class="course-description">Explore algorithms, neural networks, and deep learning techniques.</p>
+                                <div class="course-meta">
+                                    <span class="duration">⏱️ 20 hours</span>
+                                    <span class="rating">⭐ 4.9 (3.1k)</span>
+                                </div>
+                                <div class="course-progress">
+                                    <div class="progress-bar" style="width: 0%"></div>
+                                </div>
+                                <button class="btn btn-outline course-enroll-btn">Enroll Now</button>
+                            </div>
+                        </div>
+                        
+                        <div class="course-card popular" data-course-id="mobile-dev">
+                            <div class="course-image">Mobile Development</div>
+                            <div class="course-content">
+                                <span class="course-tag">Intermediate</span>
+                                <h3 class="course-title">React Native Masterclass</h3>
+                                <p class="course-description">Build cross-platform mobile apps with React Native and JavaScript.</p>
+                                <div class="course-meta">
+                                    <span class="duration">⏱️ 18 hours</span>
+                                    <span class="rating">⭐ 4.8 (2.7k)</span>
+                                </div>
+                                <div class="course-progress">
+                                    <div class="progress-bar" style="width: 0%"></div>
+                                </div>
+                                <button class="btn btn-outline course-enroll-btn">Enroll Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="carousel-nav carousel-next" aria-label="Next courses">
+                        <span class="carousel-arrow">›</span>
+                    </button>
+                </div>
+                
+                <div class="carousel-indicators">
+                    <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+                    <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
+                    <button class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="page-section how-it-works">
+            <div class="container">
+                <h2 class="section-title">How It <span>Works</span></h2>
+                
+                <div class="steps">
+                    <div class="step animate-fade-in">
+                        <div class="step-number">1</div>
+                        <h3>Create Your Account</h3>
+                        <p>Sign up for free and create your personalized learning profile to track your progress.</p>
+                    </div>
+                    
+                    <div class="step animate-fade-in" style="animation-delay: 0.1s">
+                        <div class="step-number">2</div>
+                        <h3>Choose a Course</h3>
+                        <p>Browse our extensive catalog and select courses that match your interests and skill level.</p>
+                    </div>
+                    
+                    <div class="step animate-fade-in" style="animation-delay: 0.2s">
+                        <div class="step-number">3</div>
+                        <h3>Start Learning</h3>
+                        <p>Access video lessons, quizzes, and downloadable resources at your own pace.</p>
+                    </div>
+                    
+                    <div class="step animate-fade-in" style="animation-delay: 0.3s">
+                        <div class="step-number">4</div>
+                        <h3>Get Certified</h3>
+                        <p>Complete courses to earn shareable certificates and showcase your new skills.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="page-section testimonials">
+            <div class="container">
+                <h2 class="section-title">What Learners <span>Say</span></h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card animate-fade-in">
+                        <div class="testimonial-header">
+                            <div class="avatar" aria-hidden="true">JD</div>
+                            <div>
+                                <div class="name">Jane Doe</div>
+                                <div class="role">Frontend Developer</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating" aria-label="5 out of 5 stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
+                        <p class="quote">"EdSmart helped me transition into web development with confidence. The courses are clear and hands-on."
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card animate-fade-in" style="animation-delay: 0.1s">
+                        <div class="testimonial-header">
+                            <div class="avatar" aria-hidden="true">AM</div>
+                            <div>
+                                <div class="name">Alex Morgan</div>
+                                <div class="role">Data Analyst</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating" aria-label="5 out of 5 stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
+                        <p class="quote">"The data science path is fantastic. I landed my first analyst role after completing the track."
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card animate-fade-in" style="animation-delay: 0.2s">
+                        <div class="testimonial-header">
+                            <div class="avatar" aria-hidden="true">RS</div>
+                            <div>
+                                <div class="name">Rita Singh</div>
+                                <div class="role">UI/UX Designer</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating" aria-label="4 out of 5 stars">⭐ ⭐ ⭐ ⭐ ☆</div>
+                        <p class="quote">"Loved the practical design projects and feedback. It made my portfolio stand out."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="page-section contact" style="padding: 80px 0;">
+            <div class="container">
+                <h2 class="section-title">Contact <span>Us</span></h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p>Have questions? We'd love to hear from you.</p>
+                        <div class="contact-details">
+                            <p><strong>Email:</strong> info@edsmart.com</p>
+                            <p><strong>Phone:</strong> (123) 456-7890</p>
+                            <p><strong>Address:</strong> 123 Learning St, Education City, 10001</p>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>EdSmart</h3>
+                    <p style="color: #ddd; margin-bottom: 20px;">Free online learning platform for everyone.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter">t</a>
+                        <a href="#" aria-label="Instagram">i</a>
+                        <a href="#" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Courses</h3>
+                    <ul>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Data Science</a></li>
+                        <li><a href="#">Machine Learning</a></li>
+                        <li><a href="#">UI/UX Design</a></li>
+                        <li><a href="#">Mobile Development</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Technical Requirements</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 EdSmart. All rights reserved. | Made with ❤️ for lifelong learners</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load non-critical JavaScript asynchronously -->
+    <script src="script.js" defer></script>
+    
+    <!-- Add noscript fallback for users without JavaScript -->
+    <noscript>
+        <style>
+            /* Show elements that are hidden by default when JS is enabled */
+            [data-js="enabled"] { display: none; }
+            .no-js-message {
+                background-color: var(--warning);
+                color: var(--dark);
+                padding: 1rem;
+                text-align: center;
+                margin: 1rem 0;
+                border-radius: var(--border-radius);
+            }
+        </style>
+        <div class="no-js-message">
+            For the best experience, please enable JavaScript in your browser.
+        </div>
+    </noscript>
+</body>
+</html>
