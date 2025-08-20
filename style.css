@@ -191,6 +191,12 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Ensure button-styled anchors do not get underlined on hover */
+.btn:hover,
+a.btn:hover {
+    text-decoration: none;
+}
+
 /* Remove the outline on focused links when they are also active or hovered
    in all browsers (opinionated). */
 a:active,
