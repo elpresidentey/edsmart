@@ -626,6 +626,17 @@ nav a.active::after {
     width: 0;
 }
 
+/* Home nav option: remove underline and active background */
+nav a[href="#home"]::after,
+nav a[href="#home"]:hover::after {
+    content: none;
+    width: 0;
+}
+nav a[href="#home"].active {
+    background: transparent !important;
+    color: var(--dark) !important;
+}
+
 .auth-buttons {
     display: flex;
     gap: 18px; /* a bit more space between actions */
