@@ -3,10 +3,10 @@
    ========================================================================== */
 :root {
     /* Colors */
-    --color-primary: #4361ee;
-    --color-primary-dark: #3a56d4;
-    --color-primary-light: #eef2ff;
-    --color-secondary: #7209b7;
+    --color-primary: #2563eb; /* cooler blue */
+    --color-primary-dark: #1e40af; /* deeper cool blue */
+    --color-primary-light: #e0f2fe; /* light sky */
+    --color-secondary: #06b6d4; /* cyan accent */
     --color-success: #06d6a0;
     --color-warning: #ffd166;
     --color-danger: #ef476f;
