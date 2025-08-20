@@ -32,5 +32,5 @@ Free online learning platform front-end (static SPA).
 - CI/CD to deploy (GitHub Pages/Netlify/Cloudflare Pages)
 
 ## License
-TBD
+MIT © 2025 elpresidentey
 

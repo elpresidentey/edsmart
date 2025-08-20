@@ -1,0 +1,44 @@
+# OS
+.DS_Store
+Thumbs.db
+$RECYCLE.BIN/
+*.swp
+*.log
+
+# Node / JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.package-lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+build/
+dist/
+.out/
+.cache/
+.tmp/
+coverage/
+
+# Env / secrets (never commit)
+.env
+.env.*
+*.local
+
+# Editors/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Misc
+*.tgz
+*.zip
+*.tar
+*.tar.gz
+
+# Static site
+site/
