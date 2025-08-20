@@ -542,7 +542,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0; /* slightly tighter header */
+    padding: 8px 0; /* tighter header padding to center 50px controls */
+    min-height: 66px; /* ensures comfortable header height */
+    gap: 16px;
 }
 
 .logo {
@@ -574,8 +576,9 @@ nav {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 36px; /* more spacing between links */
+    gap: 18px; /* balanced spacing between links */
     transition: all 0.3s ease;
+    align-items: center; /* vertically center links to match CTAs */
 }
 
 nav ul li {
@@ -585,16 +588,22 @@ nav ul li {
 nav a {
     text-decoration: none;
     color: var(--dark);
-    font-weight: 500;
-    font-size: 0.95rem; /* smaller nav font */
+    font-weight: 600;
+    font-size: 0.95rem; /* nav font */
     transition: var(--transition);
     position: relative;
-    padding: 10px 14px; /* touch-friendly */
+    padding: 0 14px; /* horizontal padding only to respect fixed height */
     border-radius: 9999px; /* pill potential */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px; /* align with CTA height */
+    line-height: 1;
 }
 
 nav a:hover {
     color: var(--primary);
+    background: rgba(37, 99, 235, 0.08); /* subtle hover pill */
 }
 
 /* Underline on hover */
@@ -618,7 +627,7 @@ nav a:hover::after {
 nav a.active {
     background: var(--color-primary-light);
     color: var(--color-primary);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 /* Remove underline effect for active pill to avoid double indicators */
@@ -632,15 +641,23 @@ nav a[href="#home"]:hover::after {
     content: none;
     width: 0;
 }
+nav a[href="#home"] {
+    background: transparent;
+}
+nav a[href="#home"]:hover {
+    background: transparent; /* keep Home clean on hover */
+}
 nav a[href="#home"].active {
     background: transparent !important;
     color: var(--dark) !important;
+    font-weight: 700;
 }
 
 .auth-buttons {
     display: flex;
-    gap: 18px; /* a bit more space between actions */
+    gap: 12px; /* balanced spacing */
     margin-left: 12px; /* separate from nav links */
+    align-items: center;
 }
 
 /* Ensure consistent CTA sizing in header */
