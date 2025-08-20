@@ -907,6 +907,21 @@ function initConsentAndAnalytics() {
 
     function startAnalytics() {
         if (!window.EDS_ANALYTICS_ENABLED) return;
+        // Load provider script once if configured
+        if (window.EDS_ANALYTICS_PROVIDER_URL && !window.__EDS_ANALYTICS_LOADED) {
+            try {
+                const s = document.createElement('script');
+                s.src = window.EDS_ANALYTICS_PROVIDER_URL;
+                s.defer = true;
+                if (window.EDS_ANALYTICS_PROVIDER_ATTRS && typeof window.EDS_ANALYTICS_PROVIDER_ATTRS === 'object') {
+                    Object.entries(window.EDS_ANALYTICS_PROVIDER_ATTRS).forEach(([k, v]) => {
+                        try { s.setAttribute(k, v); } catch (_) {}
+                    });
+                }
+                s.onload = () => { window.__EDS_ANALYTICS_LOADED = true; };
+                document.head.appendChild(s);
+            } catch (_) {}
+        }
         // Example: page view event on route change
         window.addEventListener('hashchange', () => {
             track('page_view', { route: location.hash || '#home' });
