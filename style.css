@@ -633,6 +633,7 @@ nav a.active::after {
 }
 
 /* Ensure consistent CTA sizing in header */
+.auth-buttons { min-width: 0; }
 .auth-buttons .btn {
     height: 50px;
     padding: 0 20px; /* keep horizontal padding, zero vertical to respect fixed height */
@@ -640,6 +641,12 @@ nav a.active::after {
     align-items: center;
     justify-content: center;
     line-height: 1; /* avoid extra vertical space from line-height */
+    /* Prevent text overflow */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0; /* allow flex shrink */
+    max-width: 220px; /* cap width so ellipsis can take effect when space is tight */
 }
 
 .btn {
