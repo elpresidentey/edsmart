@@ -11,7 +11,7 @@ window.EDS_ANALYTICS_ENABLED = true; // set to false to disable analytics entire
 // Example for Plausible (replace domain with your real domain)
 window.EDS_ANALYTICS_PROVIDER_URL = "https://plausible.io/js/script.js"; // or "https://umami.yourdomain.com/script.js"
 window.EDS_ANALYTICS_PROVIDER_ATTRS = {
-  "data-domain": "www.example.com"
+  "data-domain": "elpresidentey.github.io"
   // Add provider-specific attributes if needed
 };
 

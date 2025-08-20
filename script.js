@@ -567,6 +567,7 @@ function initApp() {
     initCoursesCarousel();
     initContactForm();
     initConsentAndAnalytics();
+    initLazyImages();
     
     // Set up navigation links
     setupNavigation(router);
@@ -978,6 +979,17 @@ function initConsentAndAnalytics() {
             console.log('[analytics]', event, data);
         } catch (_) {}
     }
+}
+
+/**
+ * Ensure images are lazily loaded and decoded async
+ */
+function initLazyImages() {
+    const imgs = document.querySelectorAll('img');
+    imgs.forEach(img => {
+        if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+        if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+    });
 }
 
 // Start the application when the DOM is fully loaded

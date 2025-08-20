@@ -30,6 +30,15 @@ jobs:
           elif [ -f yarn.lock ]; then npm i -g yarn && yarn install --frozen-lockfile; 
           else npm ci || npm install; fi
 
+      - name: Run lint if defined
+        if: ${{ hashFiles('package.json') != '' }}
+        run: |
+          if npm run | grep -q "lint"; then 
+            npm run lint || true
+          else
+            echo "No lint script defined; skipping"
+          fi
+
       - name: Run tests or build (if defined)
         if: ${{ hashFiles('package.json') != '' }}
         run: |
