@@ -525,18 +525,24 @@ p {
 /* Navigation */
 header {
     background-color: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: none; /* shadow only after scroll */
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+/* Shadow appears only after scrolling */
+.header--scrolled {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 10px 0; /* reduced height */
 }
 
 .logo {
@@ -582,31 +588,41 @@ nav a {
     font-weight: 500;
     transition: var(--transition);
     position: relative;
+    padding: 8px 10px; /* tighter, enables pill */
+    border-radius: 9999px; /* pill potential */
 }
 
 nav a:hover {
     color: var(--primary);
 }
 
+/* Underline on hover */
 nav a::after {
     content: '';
     position: absolute;
     bottom: -5px;
-    left: 0;
+    left: 10px; /* align with padding */
     width: 0;
     height: 2px;
     background-color: var(--primary);
     transition: var(--transition);
+    border-radius: 2px;
 }
 
-nav a:hover::after,
-nav a.active::after {
-    width: 100%;
+nav a:hover::after {
+    width: calc(100% - 20px);
 }
 
+/* Active link pill highlight */
 nav a.active {
+    background: var(--color-primary-light);
     color: var(--color-primary);
     font-weight: 600;
+}
+
+/* Remove underline effect for active pill to avoid double indicators */
+nav a.active::after {
+    width: 0;
 }
 
 .auth-buttons {
@@ -2106,43 +2122,36 @@ footer {
         height: 10px;
     }
 
+    /* Full-screen slide-in mobile menu */
     nav ul {
         display: none;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        right: 0;
-        background: white;
+        position: fixed;
+        inset: 0; /* full viewport */
+        background: rgba(255, 255, 255, 0.98);
         flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 0 0 12px 12px;
-        animation: slideDown 0.3s ease;
+        padding: 80px 24px 24px; /* leave room for header */
+        gap: 16px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease, opacity 0.2s ease;
+        opacity: 0;
+        z-index: 1500;
     }
 
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    nav ul.show {
+    body.nav-open nav ul {
         display: flex;
+        transform: translateX(0);
+        opacity: 1;
     }
 
     nav ul li {
-        margin: 10px 0;
+        margin: 0;
     }
 
     nav ul li a {
-        padding: 12px 0;
+        padding: 14px 16px;
         display: block;
         border-bottom: 1px solid var(--color-gray-200);
+        font-size: 1.1rem;
     }
 
     .mobile-menu-btn {
@@ -2156,17 +2165,9 @@ footer {
         background-color: var(--color-gray-100);
     }
 
+    /* Hide desktop auth buttons; they can be included in the overlay list if desired */
     .auth-buttons {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        padding: 20px;
-        border-top: 1px solid var(--color-gray-200);
-    }
-
-    .auth-buttons.show {
-        display: flex;
+        display: none !important;
     }
 
     .section-title {

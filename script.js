@@ -65,14 +65,27 @@ function initMobileMenu(router) {
     mobileMenuBtn.setAttribute('aria-controls', 'main-navigation');
     navUl.setAttribute('id', 'main-navigation');
     
-    mobileMenuBtn.addEventListener('click', toggleMenu);
-    document.addEventListener('click', closeMenuOnClickOutside);
-    navUl.addEventListener('click', closeMenuOnNavClick);
+    mobileMenuBtn.addEventListener('click', (e) => {
+        toggleMenu(e);
+        // Toggle full-screen overlay class on body for mobile
+        document.body.classList.toggle('nav-open');
+    });
+    document.addEventListener('click', (e) => {
+        closeMenuOnClickOutside(e);
+        if (!navUl.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            document.body.classList.remove('nav-open');
+        }
+    });
+    navUl.addEventListener('click', (e) => {
+        closeMenuOnNavClick(e);
+        document.body.classList.remove('nav-open');
+    });
     
     // Close menu when window is resized to desktop
     const handleResize = () => {
         if (window.innerWidth >= 992) { // Adjust breakpoint as needed
             closeMenu();
+            document.body.classList.remove('nav-open');
         }
     };
     
@@ -84,6 +97,7 @@ function initMobileMenu(router) {
         document.removeEventListener('click', closeMenuOnClickOutside);
         navUl.removeEventListener('click', closeMenuOnNavClick);
         window.removeEventListener('resize', handleResize);
+        document.body.classList.remove('nav-open');
     };
 }
 
@@ -535,6 +549,17 @@ function initApp() {
 
     // Initialize components
     initMobileMenu(router);
+
+    // Header shadow only after scroll
+    const headerEl = document.querySelector('header');
+    const updateHeaderShadow = () => {
+        if (!headerEl) return;
+        if (window.scrollY > 4) headerEl.classList.add('header--scrolled');
+        else headerEl.classList.remove('header--scrolled');
+    };
+    updateHeaderShadow();
+    window.addEventListener('scroll', updateHeaderShadow, { passive: true });
+
     initAnimations();
     initSearch();
     initProgressBars();
