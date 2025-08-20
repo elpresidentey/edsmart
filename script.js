@@ -840,6 +840,15 @@ function initContactForm() {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Honeypot: silently drop if the hidden field is filled
+        const hp = form.querySelector('input[name="website"]');
+        if (hp && hp.value) {
+            showSuccess('Thanks! Your message has been sent.');
+            form.reset();
+            return;
+        }
+
         let valid = true;
 
         if (!name.value.trim()) {
@@ -876,6 +885,8 @@ function initContactForm() {
             // Hosted form endpoint (optional). Set window.EDS_FORM_ENDPOINT to enable.
             const endpoint = window.EDS_FORM_ENDPOINT;
             if (endpoint) {
+                // Small delay to deter bots
+                await new Promise(r => setTimeout(r, 400));
                 const resp = await fetch(endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -888,6 +899,8 @@ function initContactForm() {
             }
             form.reset();
             showSuccess('Thanks! Your message has been sent.');
+            // Analytics event
+            try { window.__EDS_FORM_SENT = (window.__EDS_FORM_SENT||0)+1; } catch(_){}
         } catch (err) {
             console.error(err);
             showError('Could not send your message. Please try again later.');
