@@ -687,6 +687,35 @@ nav a.active {
     animation: spin 1s linear infinite;
 }
 
+/* Consent banner */
+.consent-banner {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    background: #0f172a;
+    color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 2000;
+}
+.consent-inner {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    flex-wrap: wrap;
+}
+.consent-text {
+    flex: 1;
+    min-width: 220px;
+}
+.consent-actions {
+    display: flex;
+    gap: 8px;
+}
+
 .mobile-menu-btn {
     display: none;
     background: none;

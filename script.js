@@ -540,6 +540,8 @@ function initApp() {
     initProgressBars();
     initCourseCards(router);
     initCoursesCarousel();
+    initContactForm();
+    initConsentAndAnalytics();
     
     // Set up navigation links
     setupNavigation(router);
@@ -782,6 +784,160 @@ function initCoursesCarousel() {
     return () => {
         stopAutoPlay();
     };
+}
+
+/**
+ * Contact form: client-side validation and optional hosted submit
+ */
+function initContactForm() {
+    const form = document.querySelector('.contact-form');
+    if (!form) return;
+
+    const name = form.querySelector('#name');
+    const email = form.querySelector('#email');
+    const message = form.querySelector('#message');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    function validateEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    function setError(input, msg) {
+        input.setAttribute('aria-invalid', 'true');
+        input.setCustomValidity(msg);
+    }
+
+    function clearError(input) {
+        input.setAttribute('aria-invalid', 'false');
+        input.setCustomValidity('');
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        let valid = true;
+
+        if (!name.value.trim()) {
+            setError(name, 'Please enter your name');
+            valid = false;
+        } else {
+            clearError(name);
+        }
+
+        if (!validateEmail(email.value.trim())) {
+            setError(email, 'Please enter a valid email');
+            valid = false;
+        } else {
+            clearError(email);
+        }
+
+        if (message.value.trim().length < 10) {
+            setError(message, 'Message should be at least 10 characters');
+            valid = false;
+        } else {
+            clearError(message);
+        }
+
+        if (!valid) {
+            showError('Please fix the errors in the form.');
+            return;
+        }
+
+        // Disable submit while sending
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+
+        try {
+            // Hosted form endpoint (optional). Set window.EDS_FORM_ENDPOINT to enable.
+            const endpoint = window.EDS_FORM_ENDPOINT;
+            if (endpoint) {
+                const resp = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name.value.trim(), email: email.value.trim(), message: message.value.trim() })
+                });
+                if (!resp.ok) throw new Error('Submit failed');
+            } else {
+                // Mock success
+                await new Promise(r => setTimeout(r, 800));
+            }
+            form.reset();
+            showSuccess('Thanks! Your message has been sent.');
+        } catch (err) {
+            console.error(err);
+            showError('Could not send your message. Please try again later.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('loading');
+        }
+    });
+}
+
+/**
+ * Consent banner and analytics stub
+ */
+function initConsentAndAnalytics() {
+    const CONSENT_KEY = 'eds_consent';
+    const hasConsent = localStorage.getItem(CONSENT_KEY) === 'true';
+
+    // Render consent banner if no consent
+    if (!hasConsent) {
+        const banner = document.createElement('div');
+        banner.className = 'consent-banner';
+        banner.innerHTML = `
+            <div class="consent-inner">
+                <div class="consent-text">We use analytics to improve EdSmart. Do you consent to anonymous usage tracking?</div>
+                <div class="consent-actions">
+                    <button class="btn btn-outline" id="consent-decline">Decline</button>
+                    <button class="btn btn-primary" id="consent-accept">Accept</button>
+                </div>
+            </div>`;
+        document.body.appendChild(banner);
+        document.getElementById('consent-accept').addEventListener('click', () => {
+            localStorage.setItem(CONSENT_KEY, 'true');
+            banner.remove();
+            startAnalytics();
+        });
+        document.getElementById('consent-decline').addEventListener('click', () => {
+            localStorage.setItem(CONSENT_KEY, 'false');
+            banner.remove();
+        });
+    } else if (hasConsent) {
+        startAnalytics();
+    }
+
+    function startAnalytics() {
+        if (!window.EDS_ANALYTICS_ENABLED) return;
+        // Example: page view event on route change
+        window.addEventListener('hashchange', () => {
+            track('page_view', { route: location.hash || '#home' });
+        });
+        // Initial view
+        track('page_view', { route: location.hash || '#home' });
+
+        // Example: track course card clicks (id only)
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.getAttribute('data-course-id');
+                track('course_card_click', { id });
+            });
+        });
+
+        // Example: track search (query length only)
+        const form = document.querySelector('.search-form');
+        if (form) {
+            form.addEventListener('submit', () => {
+                const q = document.querySelector('#search-input')?.value || '';
+                track('search_submit', { qlen: q.trim().length });
+            });
+        }
+    }
+
+    function track(event, data) {
+        try {
+            // Replace with real provider init and send
+            console.log('[analytics]', event, data);
+        } catch (_) {}
+    }
 }
 
 // Start the application when the DOM is fully loaded
